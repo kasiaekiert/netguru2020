@@ -14,6 +14,7 @@ gem "uglifier"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
+gem 'faraday', '~> 0.9.2'
 
 group :development do
   gem "better_errors"
