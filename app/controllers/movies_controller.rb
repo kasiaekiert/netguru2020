@@ -2,8 +2,9 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
   def index
-    # @movies = Movie.all.decorate
-    @movies = Movie.all.limit(5)
+    @movies = Movie.all.limit(7)
+    @movies = Movie.paginate(page: params[:page], per_page: 7)
+
   end
 
   def show
