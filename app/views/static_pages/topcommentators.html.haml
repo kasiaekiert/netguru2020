@@ -1,0 +1,13 @@
+.container.container-top-10
+%h1.title-top-10 Top 10 Commentators last week
+%br/
+%table.table.table-striped.table-result
+    %thead
+        %tr
+        %th Author
+        %th Number of comments
+    %tbody
+    - @topcommentators.each do |v, k|
+        %tr
+            %td= v
+            %td= k

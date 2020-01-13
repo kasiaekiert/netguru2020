@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :comments
   devise_for :users
 
   root "home#welcome"
+  get '/topcommentators', to: 'static_pages#topcommentators'
   resources :genres, only: :index do
     member do
       get "movies"
