@@ -1,0 +1,20 @@
+= form_for @comment do |f|
+  - if @comment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+      %ul
+        - @comment.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+  .field
+    = f.label :author, class: 'col-sm-2 control-label'
+    = f.text_field :author, class: 'form-control'
+  .field
+    = f.label :your_comment, class: 'col-sm-2 control-label'
+    = f.text_area :body, class: 'form-control'
+  .field
+    = f.label :movie_id, type: 'hidden'
+    = f.number_field :movie_id, type: 'hidden', value: :movie_id
+  .actions
+    = f.submit 'Save', class: 'btn btn-default'

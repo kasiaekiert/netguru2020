@@ -14,6 +14,7 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+  has_many :comments
 
   def cover
     'https://pairguru-api.herokuapp.com' + download_info["poster"]

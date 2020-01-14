@@ -1,5 +1,31 @@
 %h1= @movie.title
 .jumbotron
+  = @movie.description
+- if user_signed_in?
+  %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+
+%section.section.comments
+  .container
+    .comment-form
+      %hr/
+      = render 'comments/form'
+
+  %hr/  
+  .container
+    %strong Last comments:
+  %table.table-bordered.table-comments
+    %thead
+      %tr
+        %th Author
+        %th Body
+        %th{:colspan => "2"}
+    %tbody
+      - @movie.comments.each do |comment|
+        %tr
+          %td= comment.author
+          %td= comment.body
+          %td= link_to 'Edit', edit_comment_path(comment)
+          %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
   %table.table.table-striped
     %tbody
     %tr 
