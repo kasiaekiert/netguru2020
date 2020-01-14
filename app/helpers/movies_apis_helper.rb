@@ -1,0 +1,2 @@
+module MoviesApisHelper
+end
