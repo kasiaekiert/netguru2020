@@ -10,14 +10,13 @@ class MoviesController < ApplicationController
   end
 
   def send_info
-    @movie = Movie.find(params[:id])
-    MovieInfoMailer.send_info(current_user, @movie).deliver_now
+    movie = Movie.find(params[:id])
+    MovieInfoMailerJob.perform_async(current_user, movie)
     redirect_back(fallback_location: root_path, notice: "Email sent with movie info")
   end
 
   def export
-    file_path = "tmp/movies.csv"
-    MovieExporter.new.call(current_user, file_path)
+    MovieExporterJob.perform_async(current_user)
     redirect_to root_path, notice: "Movies exported"
   end
 end
