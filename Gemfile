@@ -11,10 +11,12 @@ gem "jquery-rails"
 gem "sass-rails"
 gem "sqlite3"
 gem "uglifier"
+gem 'will_paginate', '~> 3.1.0'
 gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
+gem 'faraday', '~> 0.9.2'
 
 group :development do
   gem "better_errors"
