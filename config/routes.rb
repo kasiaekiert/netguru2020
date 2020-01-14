@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "home#welcome"
+  resources :movies_apis
   resources :genres, only: :index do
     member do
       get "movies"
