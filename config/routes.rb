@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root "home#welcome"
   get '/topcommentators', to: 'static_pages#topcommentators'
+  resources :movies_apis
   resources :genres, only: :index do
     member do
       get "movies"
