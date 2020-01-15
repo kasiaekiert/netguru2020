@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
-    @comment.author = current_user.name
+    @comment.user_id = current_user.id
 
     if @comment.save
       redirect_to movie_path(@comment.movie_id)

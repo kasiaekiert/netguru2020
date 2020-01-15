@@ -19,10 +19,3 @@
         %th Author
         %th Body
         %th{:colspan => "2"}
-    %tbody
-      - @movie.comments.each do |comment|
-        %tr
-          %td= comment.author
-          %td= comment.body
-          %td= link_to 'Edit', edit_comment_path(comment)
-          %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
