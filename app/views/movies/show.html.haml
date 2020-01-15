@@ -1,6 +1,11 @@
 %h1= @movie.title
 .jumbotron
-  = @movie.description
+  %img.img-rounded{ src: @movie.cover, style: 'max-width:150px' }
+  %hr
+  %p= @movie.description
+  %p= @movie.genre.name
+  %h3 Rating 
+  = @movie.download_info['rating']
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
@@ -13,29 +18,17 @@
   %hr/  
   .container
     %strong Last comments:
-  %table.table-bordered.table-comments
-    %thead
-      %tr
-        %th Author
-        %th Body
-        %th{:colspan => "2"}
-    %tbody
-      - @movie.comments.each do |comment|
+  %br
+    %table.table.table-striped.table-comments{:style=>"border: 1px; width: 100%"}
+      %thead
         %tr
-          %td= comment.author
-          %td= comment.body
-          %td= link_to 'Edit', edit_comment_path(comment)
-          %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
-  %table.table.table-striped
-    %tbody
-    %tr 
-      %td
-        %img.img-rounded{ src: @movie.cover, style: 'max-width:150px' }
-      %td
-        = @movie.download_info['rating']
-      %td
-      %td
-        = @movie.description
-        %td
-    - if user_signed_in?
-      %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+          %th Author
+          %th Body
+          %th{:colspan => "2"}
+      %tbody
+        - @movie.comments.each do |comment|
+          %tr
+            %td= comment.author
+            %td= comment.body
+            %td= link_to 'Edit', edit_comment_path(comment)
+            %td= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }
